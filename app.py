@@ -934,7 +934,6 @@ async function generate(){
   const btn=document.getElementById('genBtn'),st=document.getElementById('status');
   btn.disabled=true;st.textContent='正在生成...';st.className='';
   try{
-    const divEnabled=document.getElementById('divEnabled').checked;
     const body={
       companyName:document.getElementById('companyName').value||'本公司',
       companyFilled:document.getElementById('companyFilled').checked,
@@ -942,11 +941,7 @@ async function generate(){
       middleTier,
       subsidiaries,
       crossLinks,
-      divider:divEnabled?{
-        afterLevel:parseInt(document.getElementById('divAfterLevel').value)||0,
-        leftLabel:document.getElementById('divLeft').value||'境外',
-        rightLabel:document.getElementById('divRight').value||'境内',
-      }:null,
+      divider:null,
     };
     const resp=await fetch('/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     if(!resp.ok)throw new Error(await resp.text());
