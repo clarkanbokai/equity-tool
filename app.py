@@ -379,20 +379,21 @@ HTML = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8"/><title>股权架构图生成工具 v3</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Georgia,'Times New Roman',serif;background:#f0f2f8;}
+body{font-family:'Noto Sans SC',system-ui,-apple-system,sans-serif;background:#f0f2f8;}
 header{background:#1a2640;color:#fff;padding:14px 28px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
-header h1{font-size:16px;letter-spacing:1px;}
-header p{font-size:11px;color:#8fa0b8;margin-top:2px;}
+header h1{font-size:20px;letter-spacing:1px;font-weight:700;}
+header p{font-size:12px;color:#8fa0b8;margin-top:2px;}
 .page{max-width:960px;margin:0 auto;padding:20px 16px 48px;}
 .card{background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:16px 18px;margin-bottom:14px;}
-.card-title{font-size:12px;font-weight:700;color:#1a2640;border-left:3px solid #1a2640;padding-left:9px;margin-bottom:12px;}
-.hint{font-size:11px;color:#999;margin-bottom:10px;line-height:1.7;}
+.card-title{font-size:15px;font-weight:700;color:#1a2640;border-left:3px solid #1a2640;padding-left:9px;margin-bottom:12px;}
+.hint{font-size:13px;color:#999;margin-bottom:10px;line-height:1.7;}
 .row{display:flex;gap:6px;align-items:flex-start;margin-bottom:8px;}
 .row-num{width:18px;font-size:11px;color:#ccc;padding-top:7px;flex-shrink:0;}
-textarea.ni{flex:1;padding:5px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px;outline:none;font-family:inherit;resize:none;overflow:hidden;line-height:1.5;min-height:30px;}
+textarea.ni{flex:1;padding:5px 8px;border:1px solid #ddd;border-radius:4px;font-size:13px;outline:none;font-family:inherit;resize:none;overflow:hidden;line-height:1.5;min-height:30px;}
 textarea.ni:focus{border-color:#1a2640;}
-input.pi{flex:0 0 78px;padding:6px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px;outline:none;font-family:inherit;}
+input.pi{flex:0 0 78px;padding:6px 8px;border:1px solid #ddd;border-radius:4px;font-size:13px;outline:none;font-family:inherit;}
 input.pi:focus{border-color:#1a2640;}
 input.wi{width:260px;padding:6px 9px;border:1px solid #ddd;border-radius:4px;font-size:13px;outline:none;font-family:inherit;}
 input.si{width:120px;padding:5px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px;outline:none;font-family:inherit;}
@@ -403,18 +404,18 @@ button.rm:hover{background:#fff0f0;color:#c33;}
 button.add-ch{padding:3px 8px;border:1px solid #9ab0e0;border-radius:4px;cursor:pointer;background:#e8f4ff;font-size:11px;color:#2477cc;flex-shrink:0;margin-top:3px;}
 .sub-card{background:#f9f9fb;border:1px solid #eaeaee;border-radius:6px;padding:9px 11px;margin-bottom:8px;}
 .ch-indent{margin-left:20px;margin-top:6px;border-left:2px solid #e0e4f0;padding-left:10px;}
-button.add-btn{width:100%;margin-top:4px;padding:7px;border:1px dashed #9ab0e0;border-radius:5px;background:#f0f5ff;color:#2455aa;font-size:12px;cursor:pointer;font-family:inherit;}
+button.add-btn{width:100%;margin-top:4px;padding:9px;border:1px dashed #9ab0e0;border-radius:5px;background:#f0f5ff;color:#2455aa;font-size:13px;cursor:pointer;font-family:inherit;}
 button.add-btn:hover{background:#e0ecff;}
-.section-toggle{font-size:12px;color:#2477cc;cursor:pointer;margin-left:8px;font-weight:400;}
+.section-toggle{font-size:14px;color:#2477cc;cursor:pointer;margin-left:8px;font-weight:400;}
 .extra-section{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #eee;}
 .gen-wrap{text-align:center;margin:6px 0 18px;}
-#genBtn{padding:11px 46px;background:#1a2640;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1px;box-shadow:0 3px 12px rgba(26,38,64,.3);font-family:inherit;}
+#genBtn{padding:13px 52px;background:#1a2640;color:#fff;border:none;border-radius:7px;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;box-shadow:0 3px 12px rgba(26,38,64,.3);font-family:inherit;}
 #genBtn:hover{background:#243560;}
 #genBtn:disabled{background:#8899bb;cursor:not-allowed;}
 #status{margin-top:9px;font-size:12px;min-height:18px;}
 .ok{color:#2a7a2a;}.err{color:#c22;}
 .preview-card{background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:16px 18px;margin-bottom:14px;}
-.preview-title{font-size:12px;color:#888;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.preview-title{font-size:14px;color:#888;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
 .preview-title strong{color:#1a2640;font-weight:700;}
 #svgWrap{width:100%;overflow-x:auto;overflow-y:scroll;height:340px;border:1px solid #e8ecf4;border-radius:5px;background:#fafbff;}
 #svgWrap svg{display:block;}
